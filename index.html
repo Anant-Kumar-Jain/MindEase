@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindEase - Mental Health & Wellness</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">MindEase</div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('main')">Home</a></li>
+                    <li><a href="#" onclick="showPage('profile')">Profile</a></li>
+                    <li><a href="#" onclick="showPage('meditation')">Meditation</a></li>
+                    <li><a href="#" onclick="showPage('music')">Music</a></li>
+                    <li><a href="#" onclick="showPage('chat')">AI Counselor</a></li>
+                    <li><a href="#" onclick="showPage('badges')">Badges</a></li>
+                    <li><a href="#" onclick="showPage('auth')">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Main Page -->
+        <div id="main" class="page active">
+            <div class="hero fade-in">
+                <h1>Welcome to MindEase</h1>
+                <p>Your journey to mental wellness starts here. Release anxiety, manage stress, and find inner peace.</p>
+                <button class="btn" onclick="connectWallet()">Connect Wallet to Get Started</button>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🧘‍♀️</div>
+                    <h3>Meditation & Yoga</h3>
+                    <p>Access guided meditations and yoga sessions to calm your mind and reduce stress.</p>
+                    <button class="btn" onclick="showPage('meditation')">Explore</button>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Calming Music</h3>
+                    <p>Relax with our curated playlist of soothing sounds and nature music.</p>
+                    <button class="btn" onclick="showPage('music')">Listen</button>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💬</div>
+                    <h3>AI Counselor</h3>
+                    <p>Chat with our AI-powered counselor for instant support and guidance.</p>
+                    <button class="btn" onclick="showPage('chat')">Chat Now</button>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Healing Badges</h3>
+                    <p>Earn NFT badges as you progress on your mental wellness journey.</p>
+                    <button class="btn" onclick="showPage('badges')">View Badges</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication Page -->
+        <div id="auth" class="page">
+            <div class="auth-container">
+                <div id="login-form">
+                    <h2>Welcome Back</h2>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="loginEmail" placeholder="Enter your Username">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password">
+                    </div>
+                    <button class="btn" onclick="handleLogin()">Sign In</button>
+                    <p style="text-align: center; margin-top: 1rem;">
+                        Don't have an account? 
+                        <a href="#" onclick="showSignup()" style="color: var(--primary-dark);">Sign up</a>
+                    </p>
+                </div>
+
+                <div id="signup-form" style="display: none;">
+                    <h2>Create Account</h2>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="signupUsername" placeholder="Choose a username">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" placeholder="Create a password">
+                    </div>
+                    <button class="btn" onclick="handleSignup()">Create Account</button>
+                    <p style="text-align: center; margin-top: 1rem;">
+                        Already have an account? 
+                        <a href="#" onclick="showLogin()" style="color: var(--primary-dark);">Sign in</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile" class="page">
+            <h2>Your Profile</h2>
+            
+            <!-- Wallet Section -->
+            <div class="profile-section">
+                <h3>Wallet Connection</h3>
+                <div class="wallet-section">
+                    <div id="wallet-status" class="wallet-status wallet-disconnected">
+                        Wallet not connected
+                    </div>
+                    <button class="btn" onclick="connectWallet()">Connect MetaMask</button>
+                    <p style="margin-top: 1rem; opacity: 0.7;">
+                        We use wallet-based authentication for complete privacy. No personal information is stored.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Password Manager -->
+            <div class="profile-section">
+                <h3>Password Manager</h3>
+                <div class="form-group">
+                    <label>Current Password</label>
+                    <input type="password" id="currentPassword" placeholder="Enter current password">
+                </div>
+                <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" id="newPassword" placeholder="Enter new password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                </div>
+                <button class="btn" onclick="updatePassword()">Update Password</button>
+            </div>
+
+            <!-- Personal Notes -->
+            <div class="profile-section">
+                <h3>Personal Notes</h3>
+                <textarea id="personalNotes" rows="5" style="width: 100%; padding: 1rem; border: 2px solid var(--primary-light); border-radius: 8px;" placeholder="Write your thoughts, feelings, or daily reflections here..."></textarea>
+                <button class="btn" onclick="saveNotes()" style="margin-top: 1rem;">Save Notes</button>
+            </div>
+        </div>
+
+        <!-- Meditation Library -->
+        <div id="meditation" class="page">
+            <h2>Meditation & Yoga Library</h2>
+            <div class="meditation-grid">
+                <div class="meditation-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQjhFM0U5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM0RjdDODIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiI+TWluZGZ1bCBNZWRpdGF0aW9uPC90ZXh0Pgo8L3N2Zz4=" alt="Meditation">
+                    <div class="meditation-content">
+                        <h3>Mindful Breathing</h3>
+                        <p>A gentle introduction to mindfulness through breath awareness.</p>
+                        <button class="btn">Start Session (10 min)</button>
+                    </div>
+                </div>
+
+                <div class="meditation-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQjhFM0U5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM0RjdDODIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiI+WW9nYSBTZXNzaW9uPC90ZXh0Pgo8L3N2Zz4=" alt="Yoga">
+                    <div class="meditation-content">
+                        <h3>Morning Yoga</h3>
+                        <p>Start your day with gentle stretching and movement.</p>
+                        <button class="btn">Start Session (15 min)</button>
+                    </div>
+                </div>
+
+                <div class="meditation-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQjhFM0U5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM0RjdDODIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiI+U2xlZXAgTWVkaXRhdGlvbjwvdGV4dD4KPHN2Zz4=" alt="Sleep">
+                    <div class="meditation-content">
+                        <h3>Sleep Meditation</h3>
+                        <p>Peaceful guided meditation for better sleep quality.</p>
+                        <button class="btn">Start Session (20 min)</button>
+                    </div>
+                </div>
+
+                <div class="meditation-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQjhFM0U5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM0RjdDODIiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiI+U3RyZXNzIFJlbGllZjwvdGV4dD4KPHN2Zz4=" alt="Stress Relief">
+                    <div class="meditation-content">
+                        <h3>Stress Relief</h3>
+                        <p>Techniques to release tension and find calm.</p>
+                        <button class="btn">Start Session (12 min)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music Page -->
+        <div id="music" class="page">
+            <h2>Calming Music Playlist</h2>
+            <div class="music-player">
+                <h3>🎵 Peaceful Sounds</h3>
+                <div class="playlist">
+                    <div class="track">
+                        <span>🌊 Ocean Waves</span>
+                        <button class="btn">Play</button>
+                    </div>
+                    <div class="track">
+                        <span>🌲 Forest Sounds</span>
+                        <button class="btn">Play</button>
+                    </div>
+                    <div class="track">
+                        <span>🌧️ Gentle Rain</span>
+                        <button class="btn">Play</button>
+                    </div>
+                    <div class="track">
+                        <span>🎼 Meditation Music</span>
+                        <button class="btn">Play</button>
+                    </div>
+                    <div class="track">
+                        <span>🎵 Ambient Sounds</span>
+                        <button class="btn">Play</button>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <audio controls style="width: 100%;">
+                        <source src="#" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Chat Page -->
+        <div id="chat" class="page">
+            <h2>AI Counselor Chat</h2>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <strong>AI Counselor:</strong> Hello! I'm here to listen and support you. How are you feeling today?
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                    <button class="btn" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFT Badges Page -->
+        <div id="badges" class="page">
+            <h2>Your Healing Journey Badges</h2>
+            <p>Collect NFT badges as you progress on your mental wellness journey!</p>
+            
+            <div class="badges-grid" style="margin-top: 2rem;">
+                <div class="badge earned">
+                    <div class="badge-icon">🏆</div>
+                    <h4>First Step</h4>
+                    <p>Completed first meditation</p>
+                </div>
+                
+                <div class="badge earned">
+                    <div class="badge-icon">🧘‍♀️</div>
+                    <h4>Mindful Warrior</h4>
+                    <p>7 days of meditation</p>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">🌟</div>
+                    <h4>Inner Peace</h4>
+                    <p>30 days streak</p>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">💎</div>
+                    <h4>Zen Master</h4>
+                    <p>100 sessions completed</p>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">🎯</div>
+                    <h4>Goal Achiever</h4>
+                    <p>Set and achieve wellness goals</p>
+                </div>
+                
+                <div class="badge">
+                    <div class="badge-icon">🌈</div>
+                    <h4>Rainbow Spirit</h4>
+                    <p>Complete all meditation categories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">MindEase</div>
+                <div class="footer-links">
+                    <a href="#" onclick="showPage('main')">Home</a>
+                    <a href="#" onclick="showPage('profile')">Profile</a>
+                    <a href="#" onclick="showPage('meditation')">Meditation</a>
+                    <a href="#" onclick="showPage('music')">Music</a>
+                    <a href="#" onclick="showPage('chat')">AI Counselor</a>
+                    <a href="#" onclick="showPage('badges')">Badges</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2025 MindEase. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="script.js"></script>
+</body>
+</html>
